@@ -7,6 +7,7 @@ export default class State extends Phaser.State {
 
   create() {
     this.add.image(0, 0, "BG");
-    this.add.sprite(320, 100, "Atlas", "dron1", this.world);
+    let dron:Phaser.Sprite = this.add.sprite(320, 100, "Atlas", "dron1", this.world);
+    dron.anchor.setTo(0.5, 0.5);
   }
 }
