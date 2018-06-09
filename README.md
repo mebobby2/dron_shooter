@@ -3,10 +3,17 @@
 ## Building
 
 ```
+yarn transpile
+```
+
+Starts webpack in watch mode. Webpack will transpile the source code (.ts files) on file changes into the bundle.js file.
+
+```
 yarn start
 ```
 
-Starts webpack in watch mode.
+Starts webpack dev server. It will load the transpiled code (bundle.js) into memory on file change.
+Run the game by going to *http://localhost:8080* in browser.
 
 ## Running
 
@@ -57,3 +64,8 @@ Since phaser librarie is written in js, to use inside a ts project, we have to i
 ```
 
 in the tsconfig.json file.
+
+### Why we need a dev sever?
+Originally, I was just opening the index.html directly in the browser to test the game. It works mostly ok, except it cannot load the asset atlast.json because it uses the *file* protocol. That is, *file:///Users/bob/Documents/Development/learn/dron_shooter/assets/atlas.json*. And cross origin requests are only supported for protocol schemes: http, data, chrome, chrome-extension, https. Hence, to load the the json file, we need to load it using a web server so then it can use the http protocol. That is why we use webpack-dev-server.
+
+*Note: loading atlas.png asset with file protocol is ok because it's just an image, so there is no security risk. Loading json file posses a security risk since it may contain malicious code there its considered a cross origin request.*
